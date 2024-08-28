@@ -1,0 +1,35 @@
+name: Docker-Azure-Employment
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t heavenly-app-employment .
+
+      - name: Upload Docker image to Azure VM via scp
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.AZURE_VM_IP }}
+          username: ${{ secrets.AZURE_VM_USERNAME }}
+          key: ${{ secrets.AZURE_VM_PRIVATE_KEY }}
+          source: .
+          target: /home/azureuser/heavenly-app-employment
+
+      - name: SSH into Azure VM and run Docker container
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AZURE_VM_IP }}
+          username: ${{ secrets.AZURE_VM_USERNAME }}
+          key: ${{ secrets.AZURE_VM_PRIVATE_KEY }}
+          script: |
+            cd /home/azureuser/docker-azure-employment
+            docker rm -f heavenly-app-employment || true
+            docker run -d -p 3000:3000 --name heavenly-app-employment heavenly-app-employment
