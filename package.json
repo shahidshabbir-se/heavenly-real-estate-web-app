@@ -9,6 +9,7 @@
 		"start": "concurrently \"npm run server:start\" \"npm run client:start\"",
 		"server:start": "cd server && pnpm run build && pnpm run start:prod",
 		"client:start": "cd client && pnpm run build && pnpm run start",
+		"install": "concurrently \"npm run server:install\" \"npm run client:install\"",
 		"client:install": "cd client && pnpm install",
 		"server:install": "cd server && pnpm install"
 	}
