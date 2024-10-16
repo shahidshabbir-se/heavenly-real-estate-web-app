@@ -1,16 +1,22 @@
 {
-	"dependencies": {
-		"concurrently": "^8.2.2"
-	},
-	"scripts": {
-		"dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
-		"server:dev": "cd server && pnpm run start:dev",
-		"client:dev": "cd client && pnpm run dev",
-		"start": "concurrently \"npm run server:start\" \"npm run client:start\"",
-		"server:start": "cd server && pnpm run build && pnpm run start:prod",
-		"client:start": "cd client && pnpm run build && pnpm run start",
-		"install": "concurrently \"npm run server:install\" \"npm run client:install\"",
-		"client:install": "cd client && pnpm install",
-		"server:install": "cd server && pnpm install"
-	}
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "cd server && pnpm run start:dev",
+    "client:dev": "cd client && pnpm run dev",
+    "start": "concurrently \"npm run server:start\" \"npm run client:start\"",
+    "server:start": "cd server && pnpm run build && pnpm run start:prod",
+    "client:start": "cd client && pnpm run build && pnpm run start",
+    "install": "concurrently \"npm run server:install\" \"npm run client:install\"",
+    "client:install": "cd client && pnpm install",
+    "server:install": "cd server && pnpm install",
+    "format": "concurrently \"npm run server:format\" \"npm run client:format\"",
+    "lint": "concurrently \"npm run server:lint\" \"npm run client:lint\"",
+    "client:format": "cd client && pnpm run format",
+    "server:format": "cd server && pnpm run format",
+    "client:lint": "cd client && pnpm run lint",
+    "server:lint": "cd server && pnpm run lint"
+  }
 }
