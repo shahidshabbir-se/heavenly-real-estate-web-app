@@ -1,5 +1,5 @@
 # Use the official Node.js image as a base
-FROM node:20
+FROM node:22
 
 # Install pnpm
 RUN npm install -g pnpm
@@ -16,7 +16,7 @@ RUN pnpm install
 # Copy the rest of the application code
 COPY . .
 
-# Expose port 3000 and 8080
+# Expose port 3000
 EXPOSE 3000
 
 # Start the Next.js application
